@@ -51,11 +51,15 @@ public class myYahooLoginClass {
 		driver.getPageSource().contains("using your Yahoo account");
 		System.out.println("using your Yahoo account! Appeared");
 		}
+	
+	// Added regular expression to start with ^ and end with $ symbol
+	// Replaced username with (.*) since the value is not fixed/hardcoded
+	// Declared String variable in the method (String username) 
+	
+	@When("^user enters valid (.*)$")
+	public void user_enters_valid_user_name(String username) {
 
-	@When("user enters valid user name")
-	public void user_enters_valid_user_name() {
-
-		driver.findElement(By.id("login-username")).sendKeys("sadat_tashkeel");
+		driver.findElement(By.id("login-username")).sendKeys(username);
 		System.out.println("User entered user name");
 	}
 
@@ -71,13 +75,17 @@ public class myYahooLoginClass {
 	public void user_is_navigated_to_password_entry_page() {
    
 		driver.getPageSource().contains("Enter password");
-		System.out.println("Enter password! Appeared");
+		System.out.println("Enter password! Text Appeared");
 	}
 
-	@When("user enters valid password")
-	public void user_enters_valid_password() throws InterruptedException {
+	// Added regular expression to start with ^ and end with $ symbol
+	// Replaced username with (.*) since the value is not fixed/hardcoded
+	// Declared String variable in the method (String password) 
+		
+	@When("^user enter the valid (.*)$")
+	public void user_enter_the_valid_password(String password) {
     
-		driver.findElement(By.id("login-passwd")).sendKeys("azwama01");
+		driver.findElement(By.id("login-passwd")).sendKeys(password);
 		System.out.println("User entered password");
 	}
 
@@ -93,7 +101,7 @@ public class myYahooLoginClass {
 	public void user_is_navigated_to_home_page() {
 		
 		driver.getPageSource().contains("Syed");
-		System.out.println("Syed! not Appeared");
+		System.out.println("Syed! Text Appeared");
 		
 		driver.close();
 		driver.quit();
